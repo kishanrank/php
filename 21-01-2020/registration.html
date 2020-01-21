@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>REGISTER PAGE</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script type="text/javascript" src="registration.js"></script>
+</head>
+
+<body>
+    <div class="main_container">
+        <div class="register_head"> <b>Register Here</b> </div>
+        <div class="register_container">
+            <input type="text" pla ceholder="Name" name="uname" id="name"><br>
+            <input type="email" placeholder="Email" name="email" id="email"> <br>
+            <input type="password" placeholder="Password" name="password1" id="password1"><br>
+            <input type="password" placeholder="Confirm Password" name="password2" id="password2"><br>
+            <select name="city" id="city">
+                <option value="">Select city</option>
+                <option value="1">Rajkot</option>
+                <option value="2">Ahmedabad</option>
+                <option value="3">Gandhinagar</option>
+                <option value="4">Surat</option>
+            </select><br>
+            <select name="state" id="state">
+                <option value="">Select State</option>
+                <option value="1">Gujarat</option>
+                <option value="2">Maharashtra</option>
+                <option value="3">Delhi</option>
+                <option value="4">Madhya Pradesh</option>
+            </select><br>
+
+            <div class="chkbox"><input type="checkbox" name="checkbox1" id="checkbox1">Terms & Condition </div> <br>
+
+            <input type="button" value="REGISTER NOW" onclick="validate_Register()" name="btn_register">
+        </div>
+
+    </div>
+
+</body>
+
+</html>
