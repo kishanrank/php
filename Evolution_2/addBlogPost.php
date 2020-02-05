@@ -31,9 +31,10 @@ if (isset($_GET['logout'])) {
         </div>
         <div class="nav">
             <ul>
+                <li><a href="mainPage.php">Home</a></li>
                 <li><a href="addBlogPost.php">Add Blog Post</a></li>
                 <li><a href="manageCategory.php">Manage category</a></li>
-                <li><a href="addStudent.php">My profile</a></li>
+                <li><a href="myProfile.php">My profile</a></li>
                 <li><a href="mainPage.php?logout='1'">Logout</a></li>
 
             </ul>
@@ -82,12 +83,6 @@ if (isset($_GET['logout'])) {
                         <br>
 
                         <div>
-                            <label>Image: </label>
-                            <input type="file" name="blogpic">
-                        </div>
-                        <br>
-
-                        <div>
                             <input type="submit" name="blogbtn">
                         </div>
                         <br>
@@ -104,25 +99,28 @@ if (isset($_GET['logout'])) {
 
 if(isset($_POST['blogbtn'])){
 
+
 $blogTitle = $_POST['blogtitle'];
 $content = $_POST['blogcontent'];
 $url = $_POST['blogurl'];
 $pubDate = $_POST['blogpubdate'];
 $pubCategory = $_POST['pubCategory'];
+$published_at = date("Y/m/d");
 
 $conn = mysqli_connect('localhost:3306', 'root', '', 'login_session');  
 if(!$conn) {
     echo "Connection Failure";
 }
-
-$add_query = "INSERT INTO blog_post (title, url, category, content, published_at) VALUES ('$blogTitle', '$content',
-'$pubCategory', '$url', '$pubDate')";
+$user_tab = mysqli_query($conn, "SELECT user_id FROM user_detail where ");
+$user_id = mysqli_fetch_assoc($user_tab);
+$u_id = $user_id['user_id'];
+$add_query = "INSERT INTO blog_post (user_id ,title, url, category, content, published_at published_at) VALUES ('$u_id','$blogTitle', '$url', 
+'$pubCategory', '$content', '$published_at' '$pubDate')";
 
 if(mysqli_query($conn,$add_query)){
+    echo "sucessfully added data.";
 }else {
-    echo "<script language='javascript' type='text/javascript'>";
-    echo "alert('Error in inserting data to databse.');";
-    echo "</script>";
+   echo "error.";
     
 }
 }

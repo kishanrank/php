@@ -10,7 +10,7 @@ if (isset($_POST['register'])) {
         echo "Connection sucessfull!!" . "<br>";
     }
     $errors = [];
-    
+
     $username = $_POST['username'];
     $email = $_POST['email'];
     $phone_number = $_POST['phone_number'];
@@ -19,30 +19,33 @@ if (isset($_POST['register'])) {
     $prefix = $_POST['prefix'];
     $info = $_POST['information'];
 
+    if (!empty($username) && !empty($email) && !empty($phone_number) && !empty($password)) {
 
-    if (empty($username) && empty($email) && empty($phone_number) && empty($password)) {
-        echo "All fields are required!!";
-    }
-    if ($password != $confirm_password) {
-        echo  "Both Password must be same.";
-    }
-    $check_user_query = "SELECT * FROM user_detail where username = $username";
-
-    $result = mysqli_query($conn, $check_user_query);
-    $user = mysqli_fetch_assoc($result);
-
-    if ($user) {
-        if ($user['username'] === $username) {
-            echo  "User already exist with this name, please use another username";
+        if ($password != $confirm_password) {
+            echo  "Both Password must be same.";
         }
-    }
-    $password = md5($password);
-    $add_query = "INSERT INTO user_detail (prefix, username, email, phone_number, password, infromation) VALUES ('$prefix','$username', '$email', '$phone_number', '$password', '$info')";
+        $check_user_query = "SELECT * FROM user_detail where username = $username";
 
-    mysqli_query($conn, $add_query);
-    $_SESSION['username'] = $username;
-    $_SESSION['sucess'] = "You are now logged-in!!";
-    header("Location: mainPage.php");
+        $result = mysqli_query($conn, $check_user_query);
+        $user = mysqli_fetch_assoc($result);
+
+        if ($user) {
+            if ($user['username'] === $username) {
+                echo  "User already exist with this name, please use another username";
+            }
+        }
+        $password = md5($password);
+        $add_query = "INSERT INTO user_detail (prefix, username, email, phone_number, password, information) VALUES ('$prefix','$username', '$email', '$phone_number', '$password', '$info')";
+
+        echo $add_query;
+        mysqli_query($conn, $add_query);
+        $_SESSION['username'] = $username;
+        $_SESSION['sucess'] = "You are now logged-in!!";
+        header("Location: mainPage.php");
+    }
+    else {
+        echo "Please enter a valid data";
+    }
 }
 
 

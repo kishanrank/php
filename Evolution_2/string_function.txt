@@ -1,0 +1,15 @@
+explode function
+
+
+explode function is used to convert string into array
+
+example
+
+$str = "Hello I m kishan."
+$array = explode(',', $str);
+foreach($array as $outputArr){
+    echo $outputArr;
+}
+
+output will be as below
+{ [0]=>Hello, [1]=>I, [2]=>m, [3]=>kishan. }

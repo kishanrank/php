@@ -1,0 +1,8 @@
+array difference :
+
+array difference is used for defining the different element of the two array.
+
+$arr1  = [1, 2, 3, 4];
+$arr2 = [4,5,6,3];
+
+here in arr2 two different element are available.

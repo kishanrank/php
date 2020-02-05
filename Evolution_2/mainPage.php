@@ -22,9 +22,6 @@ if (isset($_GET['logout'])) {
     <title>display Blog</title>
 </head>
 
-
-
-
 <body>
     <div class="main">
         <div class="varify">
@@ -34,9 +31,10 @@ if (isset($_GET['logout'])) {
         </div>
         <div class="nav">
             <ul>
+                <li><a href="mainPage.php">Home</a></li>
                 <li><a href="addBlogPost.php">Add Blog Post</a></li>
                 <li><a href="manageCategory.php">Manage category</a></li>
-                <li><a href="#">My profile</a></li>
+                <li><a href="myProfile.php">My profile</a></li>
                 <li><a href="mainPage.php?logout='1'">Logout</a></li>
 
             </ul>
@@ -46,7 +44,7 @@ if (isset($_GET['logout'])) {
     <div>
         <div class="main_display">
 
-            <div class="display table">
+            <div class="display_table">
 
                 <?php
                 $conn = mysqli_connect('localhost:3306', 'root', '', 'login_session');
@@ -62,7 +60,8 @@ if (isset($_GET['logout'])) {
                     <tr>
                         <td>ID</td>
                         <td>Category Name</td>
-                        <td> Title</td>
+                        <td>Title</td>
+                        <td>URL</td>
                         <td>Published Date</td>
                         <td colspan="2">Action</td>
                     </tr>
@@ -74,6 +73,9 @@ if (isset($_GET['logout'])) {
                                 <?php echo $row['id']; ?>
                             </td>
                             <td>
+                                <?php echo $row['category']; ?>
+                            </td>
+                            <td>
                                 <?php echo $row['title']; ?>
                             </td>
                             <td>
@@ -81,12 +83,12 @@ if (isset($_GET['logout'])) {
                             </td>
                             <td>
                                 <?php echo $row['published_at']; ?>
+                            </td> 
+                            <td>
+                               <a href="editblog.php?id=<?php echo $row['id']; ?>">Edit</a>
                             </td>
                             <td>
-                               <a href="editblog.php">Edit</a>
-                            </td>
-                            <td>
-                                <a href="deleteblog.php">Delete</a>
+                                <a href="deleteblog.php?id=<?php echo $row['id'] ?>">Delete</a>
                             </td>
 
                         </tr>
