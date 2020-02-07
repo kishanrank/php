@@ -22,7 +22,7 @@ function insertUserData($table, $prepareData)
     }
 }
 
-function fetchAllData($table, $condition)
+function fetchAllData($table)
 {
     global $connection;
 

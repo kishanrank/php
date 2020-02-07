@@ -25,6 +25,10 @@ checkSession('email'); ?>
                     <form action="addCategory.php" method="POST" enctype="multipart/form-data">
                         <fieldset>
                             <legend>Edit Category</legend>
+                            <div class="get-id">
+                                <input type="hidden" name="id" value="<?php echo $id; ?>" >
+                            </div>
+                            
                             <div>
                                 <label>Title : </label>
                                 <input type="text" name="cat[title]" value="<?php echo $category['title']; ?>">

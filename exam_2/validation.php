@@ -2,6 +2,7 @@
 session_start();
 require_once 'databse.php';
 require_once 'connection.php';
+checkSession('email');
 function validateForm($fieldname, $fieldvalue)
 {
     switch ($fieldname) {
@@ -73,9 +74,9 @@ function accountData($section)
     $prepareAccountData = [];
     foreach ($_POST[$section] as $fieldname => $fieldvalue) {
         switch ($fieldname) {
-            // case 'prefix':
-            //     $prepareAccountData['prefix'] = $fieldvalue;
-            //     break;
+                // case 'prefix':
+                //     $prepareAccountData['prefix'] = $fieldvalue;
+                //     break;
             case 'firstname':
                 $prepareAccountData['firstname'] = $fieldvalue;
                 break;
@@ -102,7 +103,9 @@ function accountData($section)
 /// prepare category data /////
 function categoryData($section)
 {
+    $cur_date = date("Y/m/d");
     $prepareCategoryData = [];
+    $prepareCategoryData['created_at'] = $cur_date;
     foreach ($_POST[$section] as $fieldname => $fieldvalue) {
         switch ($fieldname) {
             case 'title':
@@ -161,6 +164,23 @@ function blogData($section)
     return $prepareBlogData;
 }
 
+function validateUrl($section, $table)
+{
+    $chkurl = false;
+    $url = $_POST[$section]['url'];
+    $result = fetchAllData($table);
+    while ($row = mysqli_fetch_assoc($result)) {
+        if ($url == $row['url']) {
+            echo "This url is already in use.";
+            $chkurl = false;
+            break;
+        } else {
+            $chkurl = true;
+        }
+    }
+    return $chkurl;
+}
+
 /// check session //////
 function checkSession($sessionName)
 {
@@ -177,18 +197,26 @@ function destroySession($sessionName)
     header('location: login.php');
 }
 
+
 ///////  for  Register data ////////// 
 if (isset($_POST['register_button'])  && isset($_POST['account'])) {
     $isvalid = sectionToValidate('account');
     $email = $_POST['account']['email'];
+    $valid_email = false;
     if ($isvalid) {
-        $getData = fetchAllData("user_detail", "email = $email");
-        $result = mysqli_fetch_assoc($getData);
-        $db_email =  $result['email'];
-        if ($email == $db_email) {
-            echo "This email is already in use please use another email-id.";
-        } else {
-            accountData('account');
+        $getData = fetchAllData("user_detail");
+        while ($result = mysqli_fetch_assoc($getData)) {
+            if ($email == $result['email']) {
+                echo "This email is already in use please use another email-id.";
+                $valid_email = false;
+                break;
+            } else {
+                $valid_email = true;
+            }
+        }
+        if ($valid_email) {
+            $add_new_user = accountData('account');
+            insertUserData('user_detail', $add_new_user);
             $_SESSION['email'] = $email;
             header("Location: homePage.php");
         }
@@ -202,7 +230,7 @@ if (isset($_POST['login_button']) && isset($_POST['login'])) {
     $email = $_POST['login']['email'];
     $password =  $_POST['login']['password'];
     if ($idvalid) {
-        $result = fetchAllData("user_detail", "");
+        $result = fetchAllData("user_detail");
         while ($row = mysqli_fetch_assoc($result)) {
             if ($email == $row['email'] && $password == $row['password']) {
                 $_SESSION['email'] = $email;
@@ -215,34 +243,42 @@ if (isset($_POST['login_button']) && isset($_POST['login'])) {
     }
 }
 
-////////  for category data   //////////// 
+////////  add category data   //////////// 
 if (isset($_POST['categoryBtn']) && isset($_POST['cat'])) {
-    $url = $_POST['cat']['url'];
-    $result = fetchAllData("category", "");
-    $row = mysqli_fetch_assoc($result);
-    if ($url == $row['url']) {
-        echo "This url is already in use.";
-    } else {
+    $url_val = validateUrl('cat', 'category');
+
+    if ($url_val == true) {
         $categoryArr = categoryData('cat');
-        insertUserData('category', $prepareCategoryData);
+        insertUserData('category', $categoryArr);
         echo "<script>alert('Category Created Successfully')</script>";
     }
 }
 
-if (isset($_POST['blogbtn']) && isset($_POST['blog'])) {
-    $blogData = blogData('blog');
-    insertUserData('post', $blogData);
-}
-if (isset($_POST['update_blog_btn']) && isset($_POST['blog'])) {
-    $upadtedData = blogData('blog');
-    $id = $_POST['id'];
-    updateRecord("post", $upadtedData, "id = '$id' ");
-}
-
+////  edit category ////
 if (isset($_POST['edit_category_btn']) && isset($_POST['cat'])) {
-    $update_cat_data = categoryData('cat');
-    $id = $_POST['id'];
-    updateRecord("category", $update_cat_data, "id = '$id' ");
+    $url_val = validateUrl('cat', 'category');
+    if ($url_val == true) {
+        $update_cat_data = categoryData('cat');
+        $id = $_POST['id'];
+        updateRecord("category", $update_cat_data, "id = '$id' ");
+    }
+}
 
+// ///// add blog post  /////
+if (isset($_POST['blogbtn']) && isset($_POST['blog'])) {
+    $url_val = validateUrl('blog', 'post');
+    if ($url_val == true) {
+        $blogData = blogData('blog');
+        insertUserData('post', $blogData);
+    }
+}
 
+// edit blog post //////
+if (isset($_POST['update_blog_btn']) && isset($_POST['blog'])) {
+    $url_val = validateUrl('blog', 'post');
+    if ($url_val == true) {
+        $upadtedData = blogData('blog');
+        $id = $_POST['id'];
+        updateRecord("post", $upadtedData, "id = '$id' ");
+    }
 }
