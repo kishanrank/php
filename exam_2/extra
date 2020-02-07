@@ -1,0 +1,96 @@
+<div class="prefix">
+                    <label>Prefix</label>
+                    <select name="reg[prefix]">
+                        <?php $prefix = ["Mr.", "Dr.", "Miss", "Mrs.", "Er."];
+                        foreach($prefix as $prevalue):
+                        ?>
+                        <option value="<?php echo $prevalue ?>"><?php echo $prevalue; ?></option>
+
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+
+                ...............
+                *
+
+function formValidation($section, $fieldName)
+{
+    if (isset($_POST[$section][$fieldName])) {
+        switch ($section) {
+            case 'firstname':
+                if (checkValidation($section, $fieldName)) {
+                    return "Please enter a firstname";
+                }
+                break;
+
+            case 'lastname':
+                if (checkValidation($section, $fieldName)) {
+                    return "Please enter a lastname";
+                }
+                break;
+
+
+            case 'email':
+                if (checkValidation($section, $fieldName)) {
+                    return "Please enter a email";
+                }
+                break;
+
+
+            case 'mobile_number':
+                if (checkValidation($section, $fieldName)) {
+                    return "Please enter a mobile number";
+                }
+                break;
+
+
+            case 'password':
+                if (checkValidation($section, $fieldName)) {
+                    return "Please enter a password";
+                }
+                break;
+
+
+            case 'comfirm_password':
+                if (checkValidation($section, $fieldName)) {
+                    return "Please enter a comfirm password";
+                }
+                break;
+            case 'information':
+                if (checkValidation($section, $fieldName)) {
+                    return "Please enter a information";
+                }
+                break;
+        }
+    }
+}
+
+// if(isset($_POST['account']['submit_button'])) {
+//     formValidation('account', 'submit_button');
+// }
+*/
+...................
+get user id
+//echo $_SESSION['u_id'];
+    // global $connection;
+    // $email = $_SESSION['email'];
+    // $sql = "SELECT user_id FROM user_detail where email = '$email' ";
+    // $result = mysqli_query($connection, $sql);
+    // $row = mysqli_fetch_assoc($result);
+    // $uid = $row['user_id'];
+.....................
+
+
+                            <div>
+                                <label> Parent Category : </label>
+                                <select name="cat[parent_cat_id]">
+                                    <option value="0">Select Category</option>
+                                    <?php $category = fetchAllData('parent_category', "") ?>
+                                    <?php while ($result = mysqli_fetch_assoc($category)) : ?>
+                                        <option value="<?php echo $result['parent_cat_id']; ?>"><?php echo $result['cat_name']; ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+                            <?php $fetchCategory = explode(",", $blog['category']); ?>

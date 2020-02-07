@@ -1,0 +1,46 @@
+.header {
+    display: flex;
+}
+.main {
+    width: 100%;
+}
+ul {
+    list-style-type: none;
+    width: 650;
+    border: 1px solid black;
+    border-radius: 25px;
+    margin-left: 100px;   
+  }
+li {
+    display: inline;
+    padding-right: 10px;
+}
+.nav {
+    border: 1px solid black;
+    width: 1050px;
+    height: 100px;
+    font-size: 20px;
+    background-color: #bdc3c7;
+}
+.varify {
+    border: 1px solid black;
+    width: 150px;
+    padding-left: 10px;
+    height: 100px;
+    background-color: #bdc3c7;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.table-profile-data {
+    margin-left: 450px;
+    margin-top: 100px;
+}
+.profile_main{
+    background-color: #bdc3c7;
+    height: 555px;
+}
+.add-categoty {
+    background-color: #bdc3c7;
+}
