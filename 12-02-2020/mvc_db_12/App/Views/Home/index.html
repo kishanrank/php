@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+{% block body %}
+
+<h1>Welcome</h1>
+<p>Hello from a Twig template, {{ name }}!</p>
+<ul>
+    {% for colour in colours %}
+    <li> {{ colour }}</li>
+    {% endfor %}
+</ul>
+<table>
+    {% for post in posts %}
+    <tr>
+        <td>{{ post.id }}</td>
+        <td>{{ post.name }}</td>
+        <td>{{ post.mobile }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}

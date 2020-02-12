@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Posts {% endblock %}
+{% block body %}
+<h1>Posts</h1>
+        <table>
+        {% for post in posts %}
+        <tr>
+            <td>{{ post.id }}</td>
+            <td>{{ post.name }}</td>
+            <td>{{ post.mobile }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock%}

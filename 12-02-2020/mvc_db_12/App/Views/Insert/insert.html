@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Posts {% endblock %}
+{% block body %}
+<h1>Add data Page</h1>
+    <form action="/mvc_program/mvc_view_11/public/Insert/insert" method="POST">
+        <div>
+            <label>Name :</label>
+            <input type="text" name="name" id="name" />
+        </div>
+
+        <div>
+            <label>Mobile : </label>
+            <input type="number" name="mobile" id="mobile" />
+        </div>
+
+        <div>
+            <input type="submit" name="addData" />
+        </div>
+
+    </form>
+{% endblock%}
