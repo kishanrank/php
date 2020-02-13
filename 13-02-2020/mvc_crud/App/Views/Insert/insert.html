@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% block title %} Posts {% endblock %}
 {% block body %}
-<h1>Add data </h1>
 
 {% if edit == 'edit' %}
-{% set action = "update" %}
+{% set action = "update"  %}
+{% set head = "Update data" %}
 {% else %}
 {% set action = "insert" %}
+{% set head = "Insert data" %}
 {% endif %}
 
+<h1> {{head}} </h1>
 <form action="{{action}}" method="POST">
     <div>
         <label>Name :</label>
