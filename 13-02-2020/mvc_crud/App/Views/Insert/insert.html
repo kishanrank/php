@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Posts {% endblock %}
+{% block body %}
+<h1>Add data </h1>
+
+{% if edit == 'edit' %}
+{% set action = "update" %}
+{% else %}
+{% set action = "insert" %}
+{% endif %}
+
+<form action="{{action}}" method="POST">
+    <div>
+        <label>Name :</label>
+        <input type="text" name="user[name]" id="name" value="{{ posts.name }}" />
+    </div>
+
+    <div>
+        <label>Mobile : </label>
+        <input type="number" name="user[mobile]" id="mobile" value="{{posts.mobile}}" />
+    </div>
+
+    <div>
+        <input type="submit" name="addData" />
+    </div>
+
+</form>
+{% endblock%}

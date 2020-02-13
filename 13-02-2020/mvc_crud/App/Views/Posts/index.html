@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Posts {% endblock %}
+{% block body %}
+<h1>Posts</h1>
+<table border="1px">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th colspan="2">Action</th>
+    </tr>
+    {% for post in posts %}
+    <tr>
+        <td>{{ post.id }}</td>
+        <td>{{ post.name }}</td>
+        <td>{{ post.mobile }}</td>
+        <td><a href="../Insert/{{post.id}}/update">Update</a></td>
+        <td><a href="../Insert/{{post.id}}/delete">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock%}
