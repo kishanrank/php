@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %} Add Product {% endblock %}
+{% block body %}
+
+{% if edit == 'edit' %}
+{% set action = "updateProduct"  %}
+{% set head = "Update Product" %}
+{% set btn = "Update Product" %}
+{% else %}
+{% set action = "addProduct" %}
+{% set head = "Insert Product" %}
+{% set btn = "Insert Product" %}
+{% endif %}
+<h1>{{ head }}</h1>
+<form action="{{action}}" method="POST" enctype="multipart/form-data">
+
+    
+    <div class="product_name">
+        <label>Product Name :</label>
+        <input type="text" name="product[product_name]" id="product_name" value="{{ product.product_name}}" />
+    </div><br>
+
+    <div class="sku">
+        <label>SKU : </label>
+        <input type="text" name="product[sku]" id="product-sku" value="{{product.sku}}" />
+    </div><br>
+
+    <div class="url_key">
+        <label>Url Key : </label>
+        <input type="text" name="product[url_key]" id="url_key" value="{{ product.url_key}}" />
+    </div><br>
+
+    <div class="image">
+        <label>Image : </label>
+        <input type="file" name="image" id="product-image" value="{{ product.image}}" />
+    </div><br>
+
+    <div class="status">
+        <label> Status : </label>
+        <input type="text" name="product[status]" id="status" value="{{product.status}}" />
+    </div><br>
+
+    <div class="description">
+        <label> Description : </label>
+        <input type="text" name="product[description]" id="description" value="{{ product.description}}" />
+    </div><br>
+
+    <div class="short-description">
+        <label> Short Description : </label>
+        <input type="text" name="product[short_description]" id="short-description"
+            value="{{product.short_description}}" />
+    </div><br>
+
+    <div class="parent_category">
+        <label>Category : </label>
+        <select name="product[parent_category]">
+            <option value="0"> Parent Category :</option>
+            {% for category in categories %}
+            <option value="{{ category.category_id }}" 
+            {% if product.product_id == cat_rel.product_id %}
+                {% if category.category_id == cat_rel.category_id %} selected {% endif %} 
+            {% endif %}>
+                {{ category.category_name }}</option>
+            {% endfor%}
+        </select>
+    </div><br>
+
+    <div class="price">
+        <label> Price : </label>
+        <input type="text" name="product[price]" id="price" value="{{product.price}}" />
+    </div><br>
+
+    <div class="stock">
+        <label> Stock : </label>
+        <input type="text" name="product[stock]" id="stock" value="{{ product.stock}}" />
+    </div><br>
+
+    <div>
+        <input type="submit" name="add_product" value="{{ btn }}" />
+    </div>
+
+</form>
+
+{% endblock%}

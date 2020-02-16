@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %} Add Category {% endblock %}
+{% block body %}
+
+{% if edit == 'edit' %}
+{% set action = "updateCategory"  %}
+{% set head = "Update Category" %}
+{% set btn = "Update Category"%}
+{% else %}
+{% set action = "addCategory" %}
+{% set head = "Add Category" %}
+{% set btn = "Insert Category" %}
+{% endif %}
+
+<h1> {{ head }} </h1>
+<div>
+    <form action="{{ action }}" method="POST" enctype="multipart/form-data">
+
+        <div class="">
+            <label>Category Name :</label>  
+            <input type="text" name="category[category_name]" id="category-name"
+                value="{{ categories.category_name }}" />
+                
+        </div><br>
+
+        <div class="url-key">
+            <label>URL Key : </label>
+            <input type="text" name="category[url_key]" id="url-key" value="{{ categories.url_key }}" />
+        </div><br>
+
+        <div class="image">
+            <label>Image : </label>
+            <input type="file" name="image" id="image" value="{{ categories.image}}" />
+        </div><br>
+
+        <div class="status">
+            <label> Status : </label>
+            <input type="text" name="category[status]" id="status" value="{{ categories.status }}" />
+        </div><br>
+
+        <div class="description">
+            <label> Description : </label>
+            <input type="text" name="category[description]" id="description" value="{{ categories.description }}" />
+        </div><br>
+
+        <div class="parent_category">
+            <label>Parent Category : </label>
+            <select name="category[parent_category]">
+                <option value="0"> Parent Category :</option>
+                {% for categorys in category %}
+                <option value="{{ categorys.category_id }}" {% if categorys.category_id == categories.parent_category %}
+                    selected {% endif %}>{{ categorys.category_name }}</option>
+                {% endfor%}
+            </select>
+        </div><br>
+
+        <div>
+            <input type="submit" class="btn btn-primary" name="add_category" value="{{ btn }}" />
+        </div>
+    </form>
+</div>
+
+{% endblock%}
