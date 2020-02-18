@@ -33,11 +33,7 @@ class Category extends \Core\Controller
         if (isset($_POST['add_category']) && isset($_POST['category'])) {
             $categoryDataArr = $this->prepareCategoryData('category');
             $categoryDataArr['updated_at'] = date('Y/m/d h:i:s');
-            $result = DataOperation::updateData('categories', $categoryDataArr, "category_id='$id'");
-            print_r($result);
-            if ($result) {
-                echo "<script type= 'text/javascript'>alert('Record updated Successfully');document.location='/mvc_program/mvc_view_11/public/Category/manageCategory'</script>";
-            }
+            DataOperation::updateData('categories', $categoryDataArr, "category_id='$id'");
         }
     }
 
@@ -45,7 +41,6 @@ class Category extends \Core\Controller
     {
         $id = $this->route_params['id'];
         $data = DataOperation::getAllById('products_categories', "category_id ='$id'");
-        //print_r($data);
         DataOperation::deleteData('categories', "category_id='$id'");
         foreach ($data as $values) {
             $id = $values['product_id'];
