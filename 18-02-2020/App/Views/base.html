@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% set url="/mvc_program/mvc_view_11/public" %}
+    <link rel="stylesheet" href="/mvc_program/mvc_view_11/public/stylesheet.css">
+</head>
+<style>
+    
+</style>
+<body>
+    <nav>
+        <button type="button" class="btn btn-info"><a href="{{ url }}/Admin/Product/manageProduct">Manage Products </a></button>
+        <button type="button" class="btn btn-info"><a href="{{ url }}/Admin/Category/manageCategory">Manage Category</a></button>
+        <button type="button" class="btn btn-info"><a href="{{ url }}/Admin/Cms/manageCms">Manage CMS</a></button>
+        <button type="button" class="btn btn-info"><a href="{{ url }}/Admin/Admin/login">Log-out</a></button>
+    </nav>
+
+    {% block body %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block body %}
+
+
+<h1> Manage Product </h1>
+<div>
+    <button type="button" class="btn btn-primary"><a href="/mvc_program/mvc_view_11/public/Admin/Product/addProduct">Add Product</a></button>
+
+    <table border="1px">
+        <tr>
+            <th>Id</th>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.product_id }}</td>
+            <td><img width="100px" height="100px" src="http://localhost/mvc_program/mvc_view_11/public/images/{{product.image }}" ></td>
+            <td>{{ product.product_name }}</td>
+            <td>{{ product.price }}</td>
+            <td><button type="button" class="btn btn-primary"><a href="../Product/{{product.product_id}}/updateProduct">Update</a></button></td>
+            <td><button type="button" class="btn btn-warning"><a href="../Product/{{product.product_id}}/deleteProduct">Delete</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</div>
+{% endblock%}

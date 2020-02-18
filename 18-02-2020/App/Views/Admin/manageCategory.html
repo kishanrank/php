@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} {% endblock %}
+{% block body %}
+
+<h1> Manage Category</h1>
+<div>
+    <button type="submit" class="btn btn-primary"><a href="{{ url }}/Admin/Category/addCategory">Add Category</a></button>
+
+    <table border="1px">
+        <tr>
+            <th>Id</th>
+            <th>Category Image</th>
+            <th>Category Name</th>
+            <th>Description </th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.category_id }}</td>
+            <td><img width="100px" height="100px" src="{{ url }}/images/{{category.image }}" ></td>
+            <td>{{ category.category_name }}</td>
+            <td>{{ category.description }}</td>
+            <td><button type="button" class="btn btn-primary"><a href="../Category/{{category.category_id}}/updateCategory">Update</a></button></td>
+            <td><button type="button" class="btn btn-warning"><a href="../Category/{{category.category_id}}/deleteCategory">Delete</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock%}

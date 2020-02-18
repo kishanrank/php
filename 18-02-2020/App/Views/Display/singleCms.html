@@ -1,0 +1,33 @@
+{% block body %}
+
+<h1> Single CMS Information </h1>
+<div>
+    <table border="1px">
+        <tr>
+            <td>CMS Id : </td>
+            <td> {{ singleData.id}}</td>
+        </tr>
+
+        <tr>
+            <td>Page Title : </td>
+            <td>{{ singleData.page_title}}</td>
+        </tr>
+
+        <tr>
+            <td>Url Key : </td>
+            <td>{{ singleData.url_key }}</td>
+        </tr>
+        
+        <tr>
+            <td>Content : </td>
+            <td style="width: 250px;">{{ singleData.content }}</td>
+        </tr>
+
+        <tr>
+            <td>Created From : </td>
+            <td>{{ singleData.created_at }}</td>
+        </tr>
+    </table>
+    
+</div>
+{% endblock%}

@@ -1,0 +1,65 @@
+        img {
+            border: 1px white;
+            border-radius: 10px;
+        }
+        
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: blue;
+            text-decoration: none;
+        }
+        
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        
+        .category {
+            display: inline;
+            font-size: 25px;
+            margin-left: 100px;
+        }
+        
+        .navigation {
+            background-color: powderblue;
+            padding-inline-start: 240px;
+            margin-bottom: 25px;
+        }
+        
+        .head {
+            text-align: center;
+        }
+        
+        .main-content {
+            width: 400px;
+            text-align: center;
+        }
+        
+        .content {
+            margin-left: 550px;
+        }
+        .footnav {
+            
+            display: inline;
+            font-size: 25px;
+            margin-left: 250px;
+        }
+        .footer {
+            background-color: powderblue;
+            margin-top: 50px;
+        }
+        .product-display {
+            display: flex;
+
+        }
+        .product-detail{
+            margin-left: 350px;
+        }
+        .product-images {
+            margin-left: 100px;
+
+        }

@@ -1,0 +1,26 @@
+{% block title %} {% endblock %}
+{% block body %}
+
+<h1>Log-in Here</h1>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div>
+    <form action="validateLogin" method="POST">
+        <div>
+            <label>Name :</label>
+            <input type="text" name="name" id="name" />
+        </div>
+
+        <div>
+            <label>Password : </label>
+            <input type="password" name="password" id="password" />
+        </div>
+
+        <div >
+            <input type="submit" class="btn btn-primary" name="user_login" value="Log-in" />
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

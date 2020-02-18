@@ -1,0 +1,55 @@
+{% extends "base1.html "%}
+{% block title %}{% endblock %}
+{% block body %}
+
+{% set url="/mvc_program/mvc_view_11/public" %}
+
+<head>
+    <link rel="stylesheet" href="/mvc_program/mvc_view_11/public/stylesheet.css">
+</head>
+<div>
+    <div class="Heading">
+        <h1>Single Product Information </h1>
+    </div>
+
+    <div class="product-display">
+        <div class="product-images">
+            <img width="350px" height="350px"
+                src="http://localhost/mvc_program/mvc_view_11/public/images/{{singleData.image }}">
+        </div><br>
+
+        <div class="product-detail">
+            <div>
+                Product Id : {{ singleData.product_id}}
+            </div>
+
+            <div>
+                {{ singleData.description}}
+            </div><br>
+
+            <div>
+                Rs. {{ singleData.price}}, ONLY
+            </div><br>
+
+            <div>
+                Hurry-up Only {{ singleData.stock}} Quantity Available.
+            </div><br>
+
+            <div>
+                {{ singleData.short_description}}
+            </div><br>
+
+            <div>
+                First Date Available From : {{ singleData.created_at}}
+            </div><br>
+
+            <div>
+                <input type="submit" class="btn btn-info" name="add_to_cart" value="Add to Cart">
+                <input type="submit" class="btn btn-info" name="buy_now" value="Buy Now">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock%}

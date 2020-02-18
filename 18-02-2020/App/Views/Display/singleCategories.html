@@ -1,0 +1,53 @@
+{% block title %}{% endblock %}
+{% block body %}
+{% set url="/mvc_program/mvc_view_11/public" %}
+
+<head>
+    <link rel="stylesheet" href="/mvc_program/mvc_view_11/public/stylesheet.css">
+</head>
+<div>
+    <div class="navigation">
+        {% for parCat in parentCat %} {% if parCat.parent_category == 0 %}
+        <a class="category"
+            href="{{url}}/user/ProductPerCat/display/{{parCat.category_id}}">{{ parCat.category_name}}</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div><h1> Single Category Information </h1></div>
+    
+    <div>
+        <table border="1px">
+            <tr>
+                <td>Category Id : </td>
+                <td> {{ singleData.category_id}}</td>
+            </tr>
+
+            <tr>
+                <td>Category Name : </td>
+                <td>{{ singleData.category_name}}</td>
+            </tr>
+
+            <tr>
+                <td>Url Key : </td>
+                <td>{{ singleData.url_key }}</td>
+            </tr>
+
+            <tr>
+                <td>Category Photos : </td>
+                <td><img width="100px" height="100px" src="{{ url }}/images/{{singleData.image }}"></td>
+            </tr>
+
+            <tr>
+                <td>Category Description :</td>
+                <td>{{ singleData.description }}</td>
+            </tr>
+
+            <tr>
+                <td>Created From : </td>
+                <td>{{ singleData.created_at }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock%}
