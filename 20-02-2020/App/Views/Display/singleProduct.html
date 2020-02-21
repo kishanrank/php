@@ -1,0 +1,76 @@
+{% extends "base1.html "%}
+{% block body %}
+
+{% for proId in cart_data %}
+{% if proId.product_id == singleData.product_id  %}
+{% set cartBtnName = "Go to cart" %}
+{% else %}
+{% set cartBtnName = "Add to Cart" %}
+{% endif %}
+{% endfor %}
+
+<head>
+    <link rel="stylesheet" href="/mvc_program/mvc_view_11/public/stylesheet.css">
+</head>
+
+<div>
+    <div class="product-display">
+        <div class="product-images">
+            <img width="350px" height="350px"
+                src="http://localhost/mvc_program/mvc_view_11/public/images/{{singleData.image }}">
+        </div><br>
+
+        <div class="product-detail">
+
+            <div>
+                <b> {{ singleData.description}}</b>
+            </div><br>
+
+            <div>
+                Rs. {{ singleData.price}}, ONLY
+            </div><br>
+
+            <div>
+                Hurry-up Only <b>{{ singleData.stock}}</b> Quantity Available.
+            </div><br>
+
+            <div>
+                {{ singleData.short_description}}
+            </div><br>
+
+            <div>
+                First Date Available From : {{ singleData.created_at}}
+            </div><br>
+
+            <div>
+                <label>Purchase Quantity :</label>
+                <input type="number" name="quantity" id="quantity" min="1" max="{{ singleData.stock }}">
+            </div><br>
+
+            <div>
+                <input type="button" class="btn btn-info" id="cart-btn" name="add_to_cart" value="{{ cartBtnName }}">
+                <input type="button" class="btn btn-info" id="buy-now-btn" name="buy_now" value="Buy Now">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector("#cart-btn").addEventListener('click', function () {
+        var quantity = document.getElementById("quantity").value;
+        var name = "{{ singleData.description}}";
+        var price = "{{ singleData.price}}";
+        var product_id = "{{ singleData.product_id }}"
+        var cartData = {
+            'product_id': product_id,
+            'product_name': name,
+            'product_price': price,
+            'product_quantity': quantity,
+            'total': price * quantity
+        };
+        addToCart(cartData);
+    })
+
+</script>
+
+{% endblock%}

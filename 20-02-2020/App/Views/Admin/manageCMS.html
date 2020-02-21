@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="dashboard-container">
+    <div class="dbflex">
+        <div class="dashboard-header">
+            <h1> Manage CMS</h1>
+        </div>
+        <div class="add-btn-dashboard">
+            <a class="btn btn-primary" href="{{ url }}/Admin/Cms/addCms">Add CMS</a>
+        </div>
+    </div>
+    <div class="dashboard-table">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Page Title</th>
+                <th>Content </th>
+                <th colspan="2">Action</th>
+            </tr>
+            {% for cms in cmsData %}
+            <tr>
+                <td>{{ cms.id }}</td>
+                <td>{{ cms.page_title }}</td>
+                <td style="width:250px">{{ cms.content }}</td>
+                <td><a class="btn btn-primary" href="../Cms/{{cms.id}}/updateCms">Update</a></td>
+                <td><a class="btn btn-warning" href="../Cms/{{cms.id}}/deleteCms">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+    {% endblock %}

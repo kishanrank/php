@@ -1,0 +1,28 @@
+{% extends "base1.html" %}
+{% block body %}
+{% set url="/mvc_program/mvc_view_11/public" %}
+
+<head>
+    <link rel="stylesheet" href="/mvc_program/mvc_view_11/public/stylesheet.css">
+</head>
+<div>
+    <div class="all-product">
+            {% for product in productData %}
+            <div class="single-product">
+                <div>
+                    <a href="{{url}}/user/product/view/{{ product.url_key }}"><img width="200px" height="200px" src="{{ url }}/images/{{product.image }}"></a>
+                </div><br>
+
+                <div class="product-data">
+                    <p>Price : {{ product.price}}</p>
+                </div>
+
+                <div class="product-data">
+                    <p><b><a href="{{url}}/user/product/view/{{ product.url_key }}">{{ product.product_name }}</a></b></p>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+
+</div>
+{% endblock%}

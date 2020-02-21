@@ -1,0 +1,85 @@
+{% set url="/mvc_program/mvc_view_11/public" %}
+
+{% block title %}
+{% endblock %}
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/mvc_program/mvc_view_11/public/stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<div class="head-data">
+    <h1 class="head"><u>E-commerce Website</u></h1>
+    <div class="cart">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"
+            onclick="displayCart()">Cart</button>
+        <a class="btn btn-info" href="{{ url }}/admin/admin/login">Admin Login</a>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>CART</h3>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="cart_data">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success">Check-out</button>
+                        <button type="button" class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="btn-group">
+            {% for parCat in parentCat %}
+            {% if parCat.parent_category == 0 %}
+            <div class="dropdown show">
+
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="{{parCat.category_name}}"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ parCat.category_name}}</a>
+
+                <div class="dropdown-menu" aria-labelledby="{{parCat.category_name}}">
+
+                    {% for subcategory in parentCat %}
+
+                    {% if subcategory.parent_category == parCat.category_id %}
+
+                    <a class="dropdown-item"
+                        href="{{ url }}/user/ProductPerCat/view/{{subcategory.category_id}}">{{subcategory.category_name}}</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="middle-content">
+    {% block body %}
+    {% endblock%}
+</div>
+
+<div class="footer">
+    {% for footerData in footer %}
+    <a class="footnav" href="{{ url }}/{{ footerData.url_key }}">{{ footerData.page_title}}</a>
+    {% endfor %}
+</div>
+<div id="tabledata">
+</div>
+<script src="{{ url }}/cart.js"></script>

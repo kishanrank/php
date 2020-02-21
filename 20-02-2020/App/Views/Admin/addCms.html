@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} Add CMS {% endblock %}
+{% block body %}
+
+{% if edit == 'edit' %}
+{% set action = "updateCms"  %}
+{% set head = "Update CMS" %}
+{% set btn = "Update CMS" %}
+{% else %}
+{% set action = "addCms" %}
+{% set head = "Add CMS Page" %}
+{% set btn = "Insert CMS" %}
+{% endif %} 
+<h1>{{ head }}</h1>
+<form action="{{action}}" method="POST" enctype="multipart/form-data">
+
+    
+    <div class="page-title">
+        <label>Page Title :</label>
+        <input type="text" name="cms[page_title]" id="page_title" value="{{ cmsData.page_title}}" />
+    </div><br>
+
+    <div class="url_key">
+        <label>Url Key : </label>
+        <input type="text" name="cms[url_key]" id="url_key" value="{{ cmsData.url_key}}" />
+    </div><br>
+
+
+    <div class="status">
+        <label> Status : </label>
+        <input type="text" name="cms[status]" id="status" value="{{ cmsData.status}}" />
+    </div><br>
+
+    <div class="content1">
+        <label> Content : </label>
+        <textarea type="text" name="cms[content]" id="content" cols="30" rows="6" >{{ cmsData.content}}</textarea>
+    </div><br>
+
+    <div>
+        <input type="submit" class="btn btn-primary" name="add_cms" value="{{ btn }}" />
+    </div>
+
+</form>
+
+{% endblock%}

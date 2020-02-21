@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% set url="/mvc_program/mvc_view_11/public" %}
+    <link rel="stylesheet" href="/mvc_program/mvc_view_11/public/stylesheet.css">
+</head>
+
+<body>
+    <div>
+        <div class="admin-header">
+            <h1 class="head"><u>E-Commerce Website</u></h1>
+            <div class="operation-panel">
+                <nav>
+                    <a class="btn btn-info" href="{{ url }}/Admin/Product/manageProduct">Manage Products </a>
+                    <a class="btn btn-info" href="{{ url }}/Admin/Category/manageCategory">Manage Category</a>
+                    <a class="btn btn-info" href="{{ url }}/Admin/Cms/manageCms">Manage CMS</a>
+                    <a class="btn btn-info" href="{{ url }}/Admin/Admin/login">Log-out</a>
+                </nav>
+            </div>
+        </div>
+        <div>
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>

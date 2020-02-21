@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block body %}
+<div class="dashboard-container">
+    <div class="dbflex">
+        <div class="dashboard-header">
+            <h1> Manage Product</h1>
+        </div>
+        <div class="add-btn-dashboard">
+            <a class="btn btn-primary" href="{{ url }}/Admin/Product/addProduct">Add Product</a>
+        </div>
+    </div>
+    <div class="dashboard-table">
+    <table>
+        <tr>
+            <td></td>
+            <th>Id</th>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td><input type="checkbox" name="product_checkbox" class="product_checkbox"></td>
+            <td>{{ product.product_id }}</td>
+            <td><img width="100px" height="100px" src="http://localhost/mvc_program/mvc_view_11/public/images/{{product.image }}" ></td>
+            <td>{{ product.product_name }}</td>
+            <td>{{ product.price }}</td>
+            <td><a class="btn btn-primary" href="../Product/{{product.product_id}}/updateProduct">Update</a></td>
+            <td><a class="btn btn-warning" href="../Product/{{product.product_id}}/deleteProduct">Delete</a></td>
+        </tr>
+        
+        {% endfor %}
+    </table>
+</div>
+    
+</div>
+{% endblock%}

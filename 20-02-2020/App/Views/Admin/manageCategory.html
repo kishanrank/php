@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} {% endblock %}
+{% block body %}
+
+<div class="dashboard-container">
+    <div class="dbflex">
+        <div class="dashboard-header">
+            <h1> Manage Category</h1>
+        </div>
+        <div class="add-btn-dashboard">
+            <a class="btn btn-primary" href="{{ url }}/Admin/Category/addCategory">Delete</a>
+            <a class="btn btn-primary" href="{{ url }}/Admin/Category/addCategory">Add Category</a>
+            
+        </div>
+    </div>
+    <div class="dashboard-table">
+        <table>
+            <tr>
+                <td></td>
+                <th>Id</th>
+                <th>Category Image</th>
+                <th>Category Name</th>
+                <th>Description </th>
+                <th colspan="2">Action</th>
+            </tr>
+            {% for category in categories %}
+            <tr>
+                <td><input type="checkbox" name="product_checkbox" class="product_checkbox"></td>
+                <td>{{ category.category_id }}</td>
+                <td><img width="100px" height="100px" src="{{ url }}/images/{{category.image }}"></td>
+                <td>{{ category.category_name }}</td>
+                <td>{{ category.description }}</td>
+                <td><a class="btn btn-primary" href="../Category/{{category.category_id}}/updateCategory">Update</a>
+                </td>
+                <td><a class="btn btn-warning" href="../Category/{{category.category_id}}/deleteCategory">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+{% endblock%}

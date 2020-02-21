@@ -1,0 +1,174 @@
+        img {
+            border: 1px white;
+            border-radius: 10px;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: blue;
+            text-decoration: none;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+
+        .category {
+            display: inline;
+            font-size: 25px;
+            margin-left: 80px;
+        }
+
+        .navigation {
+            margin-left: 50px;
+            display: flex;
+        }
+
+        .btn-group {
+            float: left;
+        }
+
+        .head {
+            text-align: center;
+            background-color: #34495e;
+            color: blanchedalmond;
+        }
+
+        .main-content {
+            width: 400px;
+            text-align: center;
+        }
+
+        .content {
+            margin-left: 500px;
+        }
+
+        .footnav {
+            display: inline;
+            font-size: 25px;
+            margin-left: 250px;
+            color: blanchedalmond;
+        }
+
+        .footer {
+            background-color: #34495e;
+            margin-top: 50px;
+        }
+
+        .product-display {
+            display: flex;
+        }
+
+        .product-detail {
+            margin-left: 350px;
+        }
+
+        .product-images {
+            margin-left: 100px;
+        }
+
+        li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        .all-product {
+            display: flex;
+        }
+
+        .single-product {
+            padding: 10px;
+            margin-right: 100px;
+            box-shadow: cadetblue;
+        }
+
+        .product-data {
+            padding-left: 10px;
+        }
+
+        .cart {
+            float: right;
+            padding-right: 50px;
+        }
+
+        .cart-link {
+            border: 1px solid grey;
+            font-size: 25px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            background-color: lightgray;
+            color: black;
+        }
+
+        .head-data {
+            background-color: #34495e;
+            /* font-size: 120px; */
+        }
+
+        .middle-content {
+            padding-top: 80px;
+            background-color: floralwhite;
+        }
+
+        .login_box {
+            border: 1px solid black;
+            width: 450px;
+            border-radius: 10px;
+            margin-left: 450px;
+            margin-top: 170px;
+            padding-left: 130px;
+            background-color: aliceblue;
+        }
+
+        .admin-header {
+            background-color: #34495e;
+        }
+
+        .operation-panel {
+            margin-left: 415px;
+        }
+
+        tr:nth-child(even) {
+            background-color: silver;
+        }
+
+        tr:nth-child(odd) {
+            background: whitesmoke
+        }
+
+        th, td {
+            border-bottom: 1px solid black;
+            padding-top: 5px ;
+            padding-bottom: 5px;
+            padding-left: 10px;
+        }
+
+        .dashboard-container{
+            background-color: whitesmoke;
+            border: 1px solid white;
+        }
+
+        .dashboard-header {
+            color: Black;
+            text-align: center;
+        }
+
+        .dashboard-table{
+            padding-left: 300px;
+        }
+
+        .dbflex {
+            margin-left: 480px;
+            display: flex;
+        }
+
+        .add-btn-dashboard{
+            margin-left: 350px;
+            margin-top: 15px;
+        }
