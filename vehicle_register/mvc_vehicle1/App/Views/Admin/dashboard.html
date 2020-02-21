@@ -1,0 +1,44 @@
+{% block body %}
+{% set url="/mvc_program/mvc_vehicle1/public" %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div>
+            <h1>Admin Dashboard</h1>
+            <table border="1px">
+                <tr>
+                    <td>Service Id</td>
+                    <td> Title </td>
+                    <td> Vehicle Number </td>
+                    <td> Licence Number </td>
+                    <td> Date </td>
+                    <td> Service Slot </td>
+                    <td>Service Center</td>
+                    <td> Issue </td>
+                    <td> Status </td>
+                    <td colspan="2">Action</td>
+                </tr>
+                {% for service in serviceData %}
+                <tr>
+                    <td>{{ service.service_id }}</td>
+                    <td>{{ service.title}}</td>
+                    <td>{{ service.vehicle_number}} </td>
+                    <td> {{ service.licence_number }} </td>
+                    <td>{{ service.date}}</td>
+                    <td>{{ service.slot }} </td>
+                    <td> {{ service.service_center }} </td>
+                    <td> {{ service.issue }} </td>
+                    <td>{{ service.status }}</td>
+                    <td><a href="{{ url }}/admin/{{service.service_id}}/editResponse">Edit</a></td>
+                    <td><a href="#">Disapprove</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+
+    </h1>
+</body>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% block title %}{% endblock %}
+{% block body %}
+{% set url="/mvc_program/mvc_vehicle1/public" %}
+<div>
+    <div>
+        <h1 class="head">Vehicle Service Website</h1>
+    </div>
+
+    <div class="login_box">
+        <h1>Register Here</h1>
+        <form action="user/validateRegister" method="POST">
+            
+            <div>
+                <label>First Name :</label>
+                <input type="text" name="user[first_name]" id="first_name" />
+            </div><br>
+
+            <div>
+                <label>Last Name :</label>
+                <input type="text" name="user[last_name]" id="last_name" />
+            </div><br>
+
+            <div>
+                <label>E-mail :</label>
+                <input type="email" name="user[email]" id="email" />
+            </div><br>
+
+            <div>
+                <label>Mobile Number : </label>
+                <input type="text" name="user[mobile]" id="mobile" />
+            </div><br>
+
+            <div>
+                <label>Password : </label>
+                <input type="password" name="user[password]" id="password" />
+            </div><br>
+
+            <div>
+                <label> Street :</label>
+                <input type="text" name="address[street]" id="street" />
+            </div><br>
+
+            <div>
+                <label>City : </label>
+                <input type="text" name="address[city]" id="city" />
+            </div><br>
+
+            <div>
+                <label>State : </label>
+                <input type="text" name="address[state]" id="state" />
+            </div><br>
+
+            <div>
+                <label>Zip Code : </label>
+                <input type="number" name="address[zip_code]" id="password" />
+            </div><br>
+
+            <div>
+                <label>country : </label>
+                <input type="text" name="address[country]" id="country" />
+            </div><br>
+            
+            <div>
+                <label>Not a user yet?<a href="{{ url }}/user/login"><b>Login Here</b></a></label>
+            </div>
+
+            <div>
+                <input type="submit" name="user_register" value="Register" />
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

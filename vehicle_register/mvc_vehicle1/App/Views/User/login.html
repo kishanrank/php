@@ -1,0 +1,33 @@
+{% block title %} {% endblock %}
+{% block body %}
+{% set url="/mvc_program/mvc_vehicle1/public" %}
+<div>
+    <div>
+        <h1 class="head">Vehicle Service  Website</h1>
+    </div>
+
+    <div class="login_box">
+        <h1>Log-in Here</h1>
+        <form action="validateLogin" method="POST">
+            <div>
+                <label>E-mail :</label>
+                <input type="email" name="email" id="email" />
+            </div>
+
+            <div>
+                <label>Password : </label>
+                <input type="password" name="password" id="password" />
+            </div><br>
+
+            <div>
+                <label>Not a user yet?<a href="{{ url }}/User/register"><b>Register Here</b></a></label>
+            </div>
+
+            <div>
+                <input type="submit" name="user_login" value="Log-in" />
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
