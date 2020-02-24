@@ -34,7 +34,7 @@
                     <td> {{ service.issue }} </td>
                     <td>{{ service.status }}</td>
                     <td><a href="{{ url }}/admin/{{service.service_id}}/editResponse">Edit</a></td>
-                    <td><a href="#">Disapprove</a></td>
+                    <td><a href="{{ url }}/admin/{{service.service_id}}/deleteService">Disapprove</a></td>
                 </tr>
                 {% endfor %}
             </table>

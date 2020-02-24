@@ -85,16 +85,42 @@ class DataOperation extends \Core\Model
         }
     } 
 
-    public static function getLicenceData($table, $column)
+    public static function getLicenceData($table, $column, $id)
     {
         try {
             $db = static::getDB();
-            $stmt = $db->query("SELECT $column FROM $table");
+            $stmt = $db->query("SELECT $column FROM $table WHERE $id");
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
+
+    public static function updateData($table, $prepareData, $condition)
+    {
+
+        try {
+            $db = static::getDB();
+            foreach ($prepareData as $key => $value) {
+                $stmt = $db->query("UPDATE $table SET $key = '$value' WHERE $condition");
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function deleteData($table, $condition)
+    {
+        try {
+            $db = static::getDB();
+            $stmt = $db->query("DELETE FROM $table WHERE $condition");
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+
 
 }

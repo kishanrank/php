@@ -65,13 +65,13 @@ class User extends \Core\Controller
     public function uploadServiceAction()
     {
         $service_data = $this->prepareServiceData('service');
-        $service_data['created_at'] = date('Y/m/d h:i:s');
         $id = $_SESSION['current_id'];
         $service_data['user_id'] = $id;
-        $data = $this->validateslot($service_data['date'], $service_data['slot'] );
+        $data = $this->validateslot($service_data['date'], $service_data['slot']);
         $licence_data = $this->validateLicence($service_data['licence_number']);
-        if ($data >= 3) {
+        if ($data > 3) {
             echo "<script>alert('The slot you have selected is already full, please use another slot.')</script>";
+            //header("location: ../user/displayDashboard");
         } else {
             DataOperation::addData('service', $service_data);
             echo "<script>alert('Your service request is sended sucessfully')</script>";
@@ -79,20 +79,26 @@ class User extends \Core\Controller
         }
     }
 
-    public function validateslot($date, $slot) {
+    public function validateslot($date, $slot)
+    {
         $countResult = DataOperation::getSlotCount('service', $date, $slot);
         return $countResult['slot'];
     }
 
-    public function validateLicence($lic_data) {
-        $valid = true;
-        $licenceResult= DataOperation::getLicenceData('service', 'licence_number');
-        foreach($licenceResult as $value) {
-            if($lic_data == $value['licence_number']) {
-                $valid = false;
+    public function validateLicence($lic_data)
+    {
+        $userId = $_SESSION['current_id'];
+        $licenceResult = DataOperation::getLicenceData('service', 'licence_number', "user_id!=$userId");
+        foreach ($licenceResult as $value) {
+            if ($value['licence_number'] == $lic_data) {
+                // echo "This Licence is already used by another customer.";
+                $valid_lic = 0;
+                break;
+            } else {
+                $valid_lic = 1;
             }
-
         }
+        return $valid_lic;
     }
 
     public function prepareUserData($section)
@@ -167,6 +173,9 @@ class User extends \Core\Controller
                 case 'slot':
                     $serviceData['slot'] = $fieldvalue;
                     break;
+                case 'status':
+                    $serviceData['status'] = $fieldvalue;
+                    break;
                 case 'issue':
                     $serviceData['issue'] = $fieldvalue;
                     break;
@@ -175,6 +184,7 @@ class User extends \Core\Controller
                     break;
             }
         }
+        $serviceData['created_at'] = date('Y/m/d h:i:s');
         return $serviceData;
     }
 }

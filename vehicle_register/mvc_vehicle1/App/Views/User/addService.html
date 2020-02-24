@@ -2,6 +2,13 @@
 {% block body %}
 {% set url="/mvc_program/mvc_vehicle1/public" %}
 
+{% if edit == "edit"%}
+{% set btnName = "Update Service" %}
+{% set action = "" %}
+{% else %}
+{% set btnName = "Request Serrvice" %}
+{% set action = "uploadService" %}
+{% endif %}
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -21,25 +28,25 @@
 
     <div class="service-box">
         <h1>Add Service Here</h1>
-        <form action="uploadService" method="POST">
+        <form action="{{ action }}" method="POST">
             <div>
                 <label>Title :</label>
-                <input type="text" name="service[title]" id="title" />
+                <input type="text" name="service[title]" id="title" value="{{ serviceData.title}}" />
             </div><br>
 
             <div>
                 <label>Vehicle Number :</label>
-                <input type="text" name="service[vehicle_number]" id="vehicle_number" />
+                <input type="text" name="service[vehicle_number]" id="vehicle_number"  value="{{ serviceData.vehicle_number}}"/>
             </div><br>
 
             <div>
                 <label>Licence Number :</label>
-                <input type="text" name="service[licence_number]" id="licence_number" />
+                <input type="text" name="service[licence_number]" id="licence_number" value="{{ serviceData.licence_number}}" />
             </div><br>
 
             <div>
                 <label>Date :</label>
-                <input type="text" name="service[date]" id="date"  />
+                <input type="text" name="service[date]" id="date" value="{{ serviceData.date }}" />
             </div><br>
 
             <div>
@@ -60,7 +67,15 @@
 
             <div>
                 <label>Isuue :</label>
-                <input type="text" name="service[issue]" id="issue" />
+                <input type="text" name="service[issue]" id="issue" value="{{serviceData.issue}}" />
+            </div><br>
+
+            <div>
+                <label>Status :</label>
+                <select name="service[status]" id="status" >
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
             </div><br>
 
             <div>
@@ -75,7 +90,7 @@
 
 
             <div>
-                <input type="submit" name="user_login" value="Request service" />
+                <input type="submit" name="add_service" value="{{ btnName }}" />
             </div>
 
         </form>
