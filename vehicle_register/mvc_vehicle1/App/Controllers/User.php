@@ -64,16 +64,16 @@ class User extends \Core\Controller
 
     public function uploadServiceAction()
     {
-        $service_data = $this->prepareServiceData('service');
+        $serviceData = $this->prepareServiceData('service');
         $id = $_SESSION['current_id'];
-        $service_data['user_id'] = $id;
-        $data = $this->validateslot($service_data['date'], $service_data['slot']);
-        $licence_data = $this->validateLicence($service_data['licence_number']);
-        if ($data > 3 && $licence_data == 0) {
-            echo "<script>alert('The slot you have selected is already full, please use another slot.')</script>";
-            //header("location: ../user/displayDashboard");
+        $serviceData['user_id'] = $id;
+        $data = $this->validateslot($serviceData['date'], $serviceData['slot']);
+        $licence_data = $this->validateLicence($serviceData['licence_number']);
+        $vehicleNumberData = $this->validateVehicleNumber($serviceData['vehicle_number']);
+        if ($data > 3 || $licence_data == 0 || $vehicleNumberData == 0 ) {
+            echo "<script>alert('The slot you have selected is already full, please use another slot. OR data u entered is already exist.')</script>";
         } else {
-            DataOperation::addData('service', $service_data);
+            DataOperation::addData('service', $serviceData);
             echo "<script>alert('Your service request is sended sucessfully')</script>";
             header("location: ../user/displayDashboard");
         }
@@ -85,13 +85,26 @@ class User extends \Core\Controller
         return $countResult['slot'];
     }
 
+    public function validateVehicleNumber($v_number)
+    {
+        $vNumberResult = DataOperation::getFullColumnData('service', 'vehicle_number');
+        foreach ($vNumberResult as $value) {
+            if ($value['vehicle_number'] == $v_number) {
+                $valid_num = 0;
+                break;
+            } else {
+                $valid_num = 1;
+            }
+        }
+        return $valid_num;
+    }
+
     public function validateLicence($lic_data)
     {
         $userId = $_SESSION['current_id'];
-        $licenceResult = DataOperation::getLicenceData('service', 'licence_number', "user_id!=$userId");
+        $licenceResult = DataOperation::getColumnData('service', 'licence_number', "user_id!=$userId");
         foreach ($licenceResult as $value) {
             if ($value['licence_number'] == $lic_data) {
-                // echo "This Licence is already used by another customer.";
                 $valid_lic = 0;
                 break;
             } else {
