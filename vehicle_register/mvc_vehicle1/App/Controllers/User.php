@@ -69,7 +69,7 @@ class User extends \Core\Controller
         $service_data['user_id'] = $id;
         $data = $this->validateslot($service_data['date'], $service_data['slot']);
         $licence_data = $this->validateLicence($service_data['licence_number']);
-        if ($data > 3) {
+        if ($data > 3 && $licence_data == 0) {
             echo "<script>alert('The slot you have selected is already full, please use another slot.')</script>";
             //header("location: ../user/displayDashboard");
         } else {
