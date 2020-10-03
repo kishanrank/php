@@ -1,34 +1,20 @@
-<?php 
+<?php
 
-$number = $_POST['number'];
-echo $number;
-$sum = 0;
-$remainder;
-$temp = $number;
+function armstrong($num)
+{
+    $temp = $num;
+    $sum = 0;
 
-while($number>0) {
-
-    $remainder = $number%10;
-    $sum = $sum + $remainder*$remainder*$remainder;
-    $number = $number/10;
-
-    
-}
-if($sum==$temp){
-    echo "entered number is armstrong";
-}else{
-    echo "Entered number is not a armstorng";
-
+    while (!$temp == 0) {
+        $singleNum = $temp % 10;
+        $sum += pow($singleNum, 3);
+        $temp = $temp / 10;
+    }
+    if ($num == $sum) {
+        return 'Number is armstrong';
+    } else {
+        return 'Number is not  a armstrong';
+    }
 }
 
-?>
-
-<form method="post" action="armstrong.php">
-
-<input type="text" placeholder="Enter a number" name="number">
-<input type="submit">
-
-
-
-
-</form>
+echo armstrong(370);
